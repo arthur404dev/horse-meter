@@ -1,11 +1,11 @@
 import React from "react"
-import Navbar, { navBarHeight } from "./Navbar"
+import Navbar from "./Navbar"
 
 const Layout = ({ children }: { children: any }) => {
   return (
     <>
       <Navbar />
-      <main className={`pt-${navBarHeight}`}>{children}</main>
+      <main className={`pt-20`}>{children}</main>
     </>
   )
 }
