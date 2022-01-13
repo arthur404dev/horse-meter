@@ -1,51 +1,33 @@
 import { gql } from "graphql-request"
 import { GetStaticPaths, GetStaticProps } from "next"
+import { CategoryCard } from "../../components"
 import { graphCMSClient } from "../../services"
 import { IEvent } from "../index"
 
 export default function Events({ event }: { event: IEvent }) {
+  const { categorias, nome, banner, local } = event
   return (
-    <div className='w-screen h-screen bg-black opacity-95'>
-      <img
-        className='object-cover h-screen w-screen fixed -z-10'
-        src={event.banner.url}
-      />
-      <div className='flex flex-col items-center justify-center h-full w-3/4 m-auto p-24 opacity-95'>
-        <h1 className='text-6xl font-bold text-white'>{event.nome}</h1>
-        <div className='flex flex-col items-center justify-center'>
-          <div className='bg-gray-400 w-4/5 text-white my-8 rounded-xl flex flex-col items-center justify-center p-4'>
-            <p className='text-2xl'>{event.local.nome}</p>
-            <p>
-              {event.local.cidade} - {event.local.estado}
-            </p>
-            <p>{event.local.endereco}</p>
+    <div className='w-full h-full bg-gray-100'>
+      <div className='w-full h-full flex flex-col items-center'>
+        <div className='w-full relative h-32 bg-gray-800 text-white'>
+          <img
+            className='object-cover h-full w-full inset-0 absolute opacity-40'
+            src={banner.url}
+          />
+          <div className='h-full w-full flex flex-col items-center justify-center'>
+            <h1 className='font-bold text-2xl'>{nome}</h1>
+            <h3>
+              {local.nome} - {local.cidade}
+            </h3>
           </div>
         </div>
-        <div className='w-full h-full'>
-          {event.categorias.map((categoria) => (
-            <div
-              key={categoria.id}
-              className='w-3/4 m-auto my-12 bg-gray-200 rounded-2xl p-10 flex flex-col items-center justify-center'
-            >
-              <div>
-                <h1 className='uppercase text-4xl font-bold'>
-                  {categoria.nome}
-                </h1>
-                <h2>Premiação: R$ {categoria.premiacao}</h2>
-              </div>
-              <h1 className='font-bold my-4'>Competidores:</h1>
-              <div className='flex'>
-                {categoria.competidores.map((competidor) => (
-                  <div key={competidor.animal.id} className='mx-2'>
-                    <img
-                      src={competidor.animal.foto.url}
-                      className='rounded-full object-cover h-16 w-16'
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+        <div className='w-11/12 h-full m-auto'>
+          <h1 className='font-bold text-xl pt-4'>Categorias</h1>
+          <div className='flex justify-center items-center flex-col'>
+            {categorias.map((categoria) => (
+              <CategoryCard payload={categoria} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
