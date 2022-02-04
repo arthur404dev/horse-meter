@@ -1,3 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Section Content Size Calculations  */
+@layer base {
+  .content-base {
+    height: calc(100vh - theme("spacing.base"));
+    width: 100vw;
+  }
+  .content-sm {
+    height: calc(100vh - theme("spacing.sm"));
+    width: 100vw;
+  }
+  .content-md {
+    height: calc(100vh - theme("spacing.md"));
+    width: 100vw;
+  }
+  .content-lg {
+    height: calc(100vh - theme("spacing.lg"));
+    width: 100vw;
+  }
+  .content-xl {
+    height: calc(100vh - theme("spacing.xl"));
+    width: 100vw;
+  }
+}

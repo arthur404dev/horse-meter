@@ -1,15 +1,20 @@
 import { gql } from "graphql-request"
-import moment from "moment"
-import "moment/locale/pt-br"
 import { GetStaticProps } from "next"
-import Link from "next/link"
 import { EventCard } from "../components"
 import { graphCMSClient } from "../services"
+import Link from "next/link"
 
 export default function Home({ events }: { events: Array<IEvent> }) {
   return (
-    <div className='w-full h-full bg-gray-100'>
+    <div className='w-full h-full'>
       <section className='w-11/12 h-full m-auto'>
+        <div className='w-full h-40 mt-8 py-3 rounded-2xl text-white font-bold text-4xl bg-green-fern/90 hover:bg-green-fern'>
+          <Link passHref href={"/signup"}>
+            <a className='w-full h-full flex items-center justify-center'>
+              Cadastrar
+            </a>
+          </Link>
+        </div>
         <h1 className='font-bold text-xl pt-4'>Eventos</h1>
         <div className='flex justify-center items-center flex-col'>
           {events.map((event) => (
